@@ -33,7 +33,9 @@ export default class Bar {
         this.progress_width =
             this.gantt.options.column_width *
                 this.duration *
-                (this.task.progress / 100) || 0;
+                (Math.max(0,
+                          Math.min(100,
+                                   this.task.progress / 100))) || 0;
         this.group = createSVG('g', {
             class: 'bar-wrapper ' + (this.task.custom_class || ''),
             'data-id': this.task.id
